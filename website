@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot and Cold Cafe | Best Food in Town</title>
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --hot-color: #ff4757; /* Red for Hot items */
+            --cold-color: #2ed573; /* Green/Blue for Cold drinks/desserts */
+            --dark-bg: #2f3542;
+            --light-bg: #f1f2f6;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--hot-color);
+        }
+
+        .logo span {
+            color: var(--cold-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--hot-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://placehold.co/1920x600/2f3542/FFF?text=Welcome+to+Hot+and+Cold+Cafe');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--hot-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e04050;
+        }
+
+        /* --- Menu Section --- */
+        .menu-section {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--dark-bg);
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--hot-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 20px;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 10px;
+            color: var(--hot-color);
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--cold-color);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* --- Party Orders & Services --- */
+        .services {
+            background-color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .service-box {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            border-left: 5px solid var(--cold-color);
+        }
+
+        .service-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- Order Form --- */
+        .order-section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .order-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* Simple hide for mobile example */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Hot & <span>Cold Cafe</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#party">Party Orders</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Taste the Difference</h1>
+            <p>From Steaming Momos to Chilled Beverages, We Have It All!</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <h2 class="section-title"><span>Our Menu</span></h2>
+        <div class="menu-grid">
+            
+            <!-- Momo Item -->
+            <div class="menu-card">
+                <img src="https://placehold.co/400x300?text=Delicious+Momo" alt="Momo">
+                <div class="menu-info">
+                    <h3>Special Momo</h3>
+                    <p>Steamed or Fried. Served with spicy chutney.</p>
+                    <span class="price">Rs. 150</span>
+                    <button class="btn" onclick="orderItem('Special Momo')">Order Now</button>
+                </div>
+            </div>
+
+            <!-- Chowmein Item -->
+            <div class="menu-card">
+                <img src="https://placehold.co/400x300?text=Chowmein" alt="Chowmein">
+                <div class="menu-info">
+                    <h3>Chicken Chowmein</h3>
+                    <p>Stir-fried noodles with vegetables and sauces.</p>
+                    <span class="price">Rs. 180</span>
+                    <button class="btn" onclick="orderItem('Chicken Chowmein')">Order Now</button>
+                </div>
+            </div>
+
+            <!-- Pizza Item -->
+            <div class="menu-card">
+                <img src="https://placehold.co/400x300?text=Hot+Pizza" alt="Pizza">
+                <div class="menu-info">
+                    <h3>Hot Pizza</h3>
+                    <p>Cheesy burst pizza with extra toppings.</p>
+                    <span class="price">Rs. 350</span>
+                    <button class="btn" onclick="orderItem('Hot Pizza')">Order Now</button>
+                </div>
+            </div>
+
+            <!-- Cake Item -->
+            <div class="menu-card">
+                <img src="https://placehold.co/400x300?text=Fresh+Cake" alt="Cake">
+                <div class="menu-info">
+                    <h3>Cold Cakes</h3>
+                    <p>Delicious pastries and cream cakes.</p>
+                    <span class="price">Rs. 200</span>
+                    <button class="btn" onclick="orderItem('Fresh Cake')">Order Now</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Party Orders Section -->
+    <section id="party" class="services">
+        <h2 class="section-title">We Also Serve</h2>
+        <div class="service-container">
+            <div class="service-box">
+                <h3>🎉 Party Orders</h3>
+                <p>Planning a birthday or event? We provide bulk orders for parties. 
+                   Get special discounts on large quantities of Momos, Pizza, and Cakes.</p>
+            </div>
+            <div class="service-box">
+                <h3>🍔 Family Packs</h3>
+                <p>Grab our exclusive family combo packs perfect for cold movie nights or hot summer lunches.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Order Form -->
+    <section id="contact" class="order-section">
+        <h2>Place Your Order</h2>
+        <form id="orderForm" onsubmit="submitOrder(event)">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="name" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" required placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+                <label>Select Item</label>
+                <select id="itemSelect">
+                    <option value="Special Momo">Special Momo</option>
+                    <option value="Chicken Chowmein">Chicken Chowmein</option>
+                    <option value="Hot Pizza">Hot Pizza</option>
+                    <option value="Fresh Cake">Fresh Cake</option>
+                    <option value="Party Order">Party Order (Bulk)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Address / Details</label>
+                <textarea id="address" rows="3" placeholder="Delivery address or party details..."></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Confirm Order</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Hot and Cold Cafe. All rights reserved.</p>
+        <p>Call us: +123 456 7890 | Email: info@hotandcoldcafe.com</p>
+    </footer>
+
+    <script>
+        // Function to pre-select item when clicking "Order Now" on a card
+        function orderItem(itemName) {
+            const select = document.getElementById('itemSelect');
+            select.value = itemName;
+            // Smooth scroll to form
+            document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Function to handle form submission
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const item = document.getElementById('itemSelect').value;
+
+            // In a real website, this would send data to a server
+            alert(`Thank you, ${name}! \nYour order for ${item} has been placed successfully.\nWe will contact you shortly for payment.`);
+            
+            // Reset form
+            document.getElementById('orderForm').reset();
+        }
+    </script>
+
+</body>
+</html>
